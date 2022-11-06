@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customer_Board">
+	<!-- 해당 페이지에 있는 게시글 모두 가져오기 -->
+	<select id="getList" parameterType="map" resultType="customer_boardVO">
+		SELECT BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE
+		FROM
+			(SELECT ROWNUM R,  B.* FROM
+				(SELECT * FROM TABLE_CUSTOMER_BOARD ORDER BY BOARD_NUM DESC) B)
+		WHERE R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	<!-- 게시글 총 갯수 -->
+	<select id="getTotal" resultType="_int">
+		SELECT COUNT(BOARD_NUM) FROM TABLE_CUSTOMER_BOARD
+	</select>
+	
+	<!-- 게시글 추가하기 -->
+	<insert id="insertBoard" parameterType="customer_boardVO">
+		INSERT INTO TABLE_CUSTOMER_BOARD
+		(BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE)
+		VALUES (SEQ_TABLE_REVIEW_BOARD.NEXTVAL, #{board_title}, #{board_content}, #{board_id}, SYSDATE)
+	</insert>
+	
+	<!-- 가장 최근 게시글 번호 -->
+	<select id="getSeq" resultType="_int">
+		SELECT SEQ_TABLE_CUSTOMER_BOARD.CURRVAL FROM DUAL
+	</select>
+	
+	<!-- 해당 게시글 하나 상세보기  -->
+	<select id="getDetail" parameterType="_int" resultType="customer_boardVO">
+		SELECT BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE
+		FROM TABLE_CUSTOMER_BOARD WHERE BOARD_NUM = #{board_num}
+	</select>
+	
+	<!-- 해당 게시글 수정 -->
+	<update id="update" parameterType="customer_boardVO">
+		UPDATE TABLE_CUSTOMER_BOARD
+		SET BOARD_TITLE = #{board_title}, BOARD_CONTENT = #{board_content}, BOARD_IMG_NAME= #{board_img_name}
+		WHERE BOARD_NUM = #{board_num}
+	</update>
+		
+	
+	<!-- 해당 게시글 삭제 -->
+	<delete id="delete" parameterType="_int">
+		DELETE FROM TABLE_CUSTOMER_BOARD
+		WHERE BOARD_NUM = #{board_num}
+	</delete>
+	
+	<!-- 댓글 -->
+	<select id="getReplyList" parameterType="_int" resultType="boardReplyVO">
+		SELECT REPLY_NUM, BOARD_NUM, MEMBER_ID, REPLY_CONTENT
+		FROM TABLE_REPLY
+		WHERE BOARD_NUM = #{board_num} ORDER BY REPLY_NUM DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="boardReplyVO">
+		INSERT INTO TABLE_REPLY
+		VALUES(SEQ_REPLY.NEXTVAL, #{board_num}, #{member_id}, #{reply_content})
+	</insert>
+	
+	<delete id="deleteReplyToReplyNum" parameterType="_int">
+		DELETE FROM TABLE_REPLY
+		WHERE REPLY_NUM = #{reply_num}
+	</delete>
+
+	<delete id="deleteReplyToBoardNum" parameterType="_int">
+		DELETE FROM TABLE_REPLY
+		WHERE BOARD_NUM = #{board_num}
+	</delete>
+	
+	<update id="updateReply" parameterType="boardReplyVO">
+		UPDATE TABLE_REPLY
+		SET REPLY_CONTENT = #{reply_content}
+		WHERE REPLY_NUM = #{reply_num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review_files">
+	<insert id="insertFile" parameterType="reveiw_board_filesVO">
+		INSERT INTO TABLE_BOARD_FILES
+		(FILE_NAME, BOARD_NUM, FILE_NAME_ORIGINAL)
+		VALUES (#{file_name}, #{board_num}, #{file_name_original})
+	</insert>
+
+	<select id="getFiles" parameterType="_int" resultType="reveiw_board_filesVO">
+		SELECT FILE_NAME, BOARD_NUM, FILE_NAME_ORIGINAL FROM TABLE_BOARD_FILES
+		WHERE BOARD_NUM = #{board_num}
+	</select>
+
+	<delete id="delete" parameterType="_int">
+		DELETE FROM TABLE_BOARD_FILES
+		WHERE BOARD_NUM = #{board_num}
+	</delete>
+</mapper>

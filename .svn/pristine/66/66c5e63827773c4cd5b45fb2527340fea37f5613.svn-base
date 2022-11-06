@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review_Board">
+	<!-- 해당 페이지에 있는 게시글 모두 가져오기 -->
+	<select id="getList" parameterType="map" resultType="review_boardVO">
+		SELECT BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE, READCOUNT, BOARD_IMG_NAME
+		FROM
+			(SELECT ROWNUM R,  B.* FROM
+				(SELECT * FROM TABLE_REVIEW_BOARD ORDER BY BOARD_NUM DESC) B)
+		WHERE R BETWEEN ${startRow} AND ${endRow}
+	</select>
+	
+	<!-- 게시글 총 갯수 -->
+	<select id="getTotal" resultType="_int">
+		SELECT COUNT(BOARD_NUM) FROM TABLE_REVIEW_BOARD
+	</select>
+	
+	<!-- 게시글 추가하기 -->
+	<insert id="insertBoard" parameterType="review_boardVO">
+		INSERT INTO TABLE_REVIEW_BOARD
+		(BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE,  READCOUNT, BOARD_IMG_NAME)
+		VALUES (SEQ_TABLE_REVIEW_BOARD.NEXTVAL, #{board_title}, #{board_content}, #{board_id}, SYSDATE, 0, #{board_img_name})
+	</insert>
+	
+	<!-- 가장 최근 게시글 번호 -->
+	<select id="getSeq" resultType="_int">
+		SELECT SEQ_TABLE_REVIEW_BOARD.CURRVAL FROM DUAL
+	</select>
+	
+	<!-- 해당 게시글 하나 상세보기  -->
+	<select id="getDetail" parameterType="_int" resultType="review_boardVO">
+		SELECT BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_ID, BOARD_DATE, READCOUNT, BOARD_IMG_NAME 
+		FROM TABLE_REVIEW_BOARD WHERE BOARD_NUM = #{board_num}
+	</select>
+	
+	<!-- 해당 게시글 수정 -->
+	<update id="update" parameterType="review_boardVO">
+		UPDATE TABLE_REVIEW_BOARD
+		SET BOARD_TITLE = #{board_title}, BOARD_CONTENT = #{board_content}, BOARD_IMG_NAME= #{board_img_name}
+		WHERE BOARD_NUM = #{board_num}
+	</update>
+	
+	<!-- 해당 게시글 조회수 +1 -->
+	<update id="updateReadCount" parameterType="_int">
+		UPDATE TABLE_REVIEW_BOARD
+		SET READCOUNT = READCOUNT + 1
+		WHERE BOARD_NUM = #{board_num}
+	</update>
+	
+	<!-- 해당 게시글 삭제 -->
+	<delete id="delete" parameterType="_int">
+		DELETE FROM TABLE_REVIEW_BOARD
+		WHERE BOARD_NUM = #{board_num}
+	</delete>
+	
+	<!-- 게시글 대표사진 업로드 -->
+	<update id="updateImg" parameterType="review_boardVO">
+		UPDATE TABLE_REVIEW_BOARD
+		SET BOARD_IMG_NAME= #{board_img_name}
+		WHERE BOARD_NUM= #{board_num}
+	</update>
+	
+	<!-- 해당 게시글 대표사진 삭제 -->
+	<update id="deleteImg" parameterType="_int">
+	UPDATE TABLE_REVIEW_BOARD
+	SET BOARD_IMG_NAME= NULL
+	WHERE BOARD_NUM= #{board_num}
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

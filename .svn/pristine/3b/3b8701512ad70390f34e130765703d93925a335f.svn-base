@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>workingBlood_server</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ 
+ 
+  <servlet>
+    <servlet-name>UserFrontController</servlet-name>
+    <servlet-class>com.koreait.app.user.UserFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserFrontController</servlet-name>
+    <url-pattern>*.us</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>Community_Review_BoardFrontController</servlet-name>
+    <servlet-class>com.koreait.app.community_Review_Board.Community_Review_BoardFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Community_Review_BoardFrontController</servlet-name>
+    <url-pattern>*.co</url-pattern>
+  </servlet-mapping>
+ 
+ 
+  <servlet>
+    <servlet-name>DonaTicketFrontController</servlet-name>
+    <servlet-class>com.koreait.app.dona.DonaTicketFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DonaTicketFrontController</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>CommunityCustomerBoardFrontController</servlet-name>
+    <servlet-class>com.koreait.app.community_Customer_Board.CommunityCustomerBoardFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommunityCustomerBoardFrontController</servlet-name>
+    <url-pattern>*.cu</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>MyPageFrontController</servlet-name>
+    <servlet-class>com.koreait.app.my_Page.MyPageFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyPageFrontController</servlet-name>
+    <url-pattern>*.my</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>introduceFrontController</servlet-name>
+    <servlet-class>com.koreait.app.introduce.introduceFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>introduceFrontController</servlet-name>
+    <url-pattern>*.in</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>knowledgeFrontController</servlet-name>
+    <servlet-class>com.koreait.app.knowledge.knowledgeFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>knowledgeFrontController</servlet-name>
+    <url-pattern>*.kn</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

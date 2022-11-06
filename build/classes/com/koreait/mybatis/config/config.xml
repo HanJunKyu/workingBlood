@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.koreait.app.user.vo.UserVO" alias="userVO"/>
+		<typeAlias type="com.koreait.app.dona.vo.DonaTicketVO" alias="donaVO"/>
+		<typeAlias type="com.koreait.app.dona.vo.DonaTicketReqVO" alias="donaReqVO"/>
+		<typeAlias type="com.koreait.app.dona.vo.DonaTicketFilesVO" alias="donaFilesVO"/>
+		<typeAlias type="com.koreait.app.dona.vo.DonaTicketReqFilesVO" alias="donaReqFilesVO"/>
+		<typeAlias type="com.koreait.app.community_Review_Board.vo.Community_Review_BoardVO" alias="review_boardVO"/>
+		<typeAlias type="com.koreait.app.community_Review_Board.vo.Review_Board_FilesVO" alias="reveiw_board_filesVO"/>
+		<typeAlias type="com.koreait.app.Community_Customer_Board.vo.Community_Customer_BoardVO" alias="customer_boardVO"/>
+		<typeAlias type="com.koreait.app.Community_Customer_Board.vo.BoardReplyVO" alias="boardReplyVO"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+				<property name="username" value="hr"/>
+				<property name="password" value="hr"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/koreait/mybatis/sql/user.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/auth.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/dona_ticket.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/dona_ticket_files.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/dona_req.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/dona_req_files.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/community_Review_Board.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/community_Customer_Board.xml"/>
+		<mapper resource="com/koreait/mybatis/sql/Review_Board_Files.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+

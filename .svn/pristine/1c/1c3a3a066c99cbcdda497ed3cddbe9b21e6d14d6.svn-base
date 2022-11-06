@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Files">
+		<insert id="insertFile" parameterType="donaFilesVO">
+			INSERT INTO TABLE_DONA_FILES 
+			(FILE_NAME, DONA_NUM, FILE_NAME_ORIGINAL)
+			VALUES (#{file_name}, #{dona_num}, #{file_name_original})
+		</insert>
+		
+		<select id="getFiles" parameterType="_int" resultType="donaFilesVO">
+			SELECT FILE_NAME, DONA_NUM, FILE_NAME_ORIGINAL FROM TABLE_DONA_FILES
+			WHERE DONA_NUM = #{dona_num}
+		</select>
+		
+		<delete id="delete" parameterType="_int">
+			DELETE FROM TABLE_DONA_FILES
+			WHERE DONA_NUM = #{dona_num}
+		</delete>
+</mapper>

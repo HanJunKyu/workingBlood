@@ -1,0 +1,45 @@
+package com.koreait.app.Community_Customer_Board;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.koreait.action.Action;
+import com.koreait.action.ActionForward;
+import com.koreait.app.Community_Customer_Board.dao.Community_Customer_BoardDAO;
+import com.koreait.app.Community_Customer_Board.vo.Community_Customer_BoardVO;
+
+
+public class CommunityCustomerBoardModifyOk implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {		
+		
+		Community_Customer_BoardDAO b_dao = new Community_Customer_BoardDAO();
+		Community_Customer_BoardVO b_vo = new Community_Customer_BoardVO();
+		ActionForward forward = new ActionForward();
+		try {
+			int board_num = Integer.parseInt(req.getParameter("board_num"));
+						
+			//게시글 정보 수정
+			b_vo.setBoard_num(board_num);
+			b_vo.setBoard_title(req.getParameter("board_title"));
+			b_vo.setBoard_content(req.getParameter("board_content"));
+			b_dao.update(b_vo);
+			
+			forward.setRedirect(false);
+			forward.setPath("/board/BoardViewOk.bo?board_num="+board_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return forward;
+	}
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+package com.koreait.app.Community_Customer_Board;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.koreait.action.Action;
+import com.koreait.action.ActionForward;
+import com.koreait.app.Community_Customer_Board.dao.Community_Customer_BoardDAO;
+
+
+public class CommunityCustomerBoardDeleteOk implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		
+		Community_Customer_BoardDAO b_dao = new Community_Customer_BoardDAO();
+		ActionForward forward = new ActionForward();
+		try {
+			int board_num = Integer.parseInt(req.getParameter("board_num"));
+									
+			b_dao.delete(board_num);
+			
+			forward.setRedirect(false);
+			forward.setPath("/mypage.jsp");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return forward;
+	}
+
+}

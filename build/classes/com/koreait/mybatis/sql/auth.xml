@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Auth">
+	<!-- 비밀번호 확인 -->
+	<select id="checkPw" parameterType="hashmap" resultType="_int">
+		SELECT COUNT(USER_PW) FROM TABLE_USER
+		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
+	</select>
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteUser" parameterType="string">
+		DELETE FROM TABLE_USER WHERE USER_ID=#{user_id}
+	</delete>
+	<!-- 회원 정보 수정 -->
+	<update id="updateUser" parameterType="userVO">
+		UPDATE TABLE_USER
+		SET USER_PW=#{user_pw}, USER_NAME=#{user_name}, USER_EMAIL=#{user_email}, USER_ZIPCODE=#{user_zipcode}, USER_ADDRESS=#{user_address}, USER_ADDRESS_DETAIL=#{user_address_detail}, USER_BLOOD_TYPE=#{user_blood_type}, USER_PHONENUM=#{user_phonenum}
+		WHERE USER_ID=#{user_id}
+	</update>
+</mapper>

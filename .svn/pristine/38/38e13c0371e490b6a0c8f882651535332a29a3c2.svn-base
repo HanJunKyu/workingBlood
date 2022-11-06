@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http//mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Dona">
+   <!-- 헌혈증 기부 신청 목록 추가 -->
+   	<insert id="insertDona" parameterType="donaVO">
+   	INSERT INTO TABLE_DONA
+	(DONA_NUM, DONA_TICKET_NUM, USER_ID, USER_BLOOD_TYPE, DONA_DATE)
+	VALUES(SEQ_DONA.NEXTVAL, #{dona_ticket_num}, #{user_id}, #{user_blood_type}, SYSDATE)
+   	</insert>
+   
+   <!-- 헌혈증 기부 시퀀스 가져오기 -->
+   <select id="getSeq" resultType="_int">
+		SELECT SEQ_DONA.CURRVAL FROM DUAL
+	</select>
+   
+</mapper>

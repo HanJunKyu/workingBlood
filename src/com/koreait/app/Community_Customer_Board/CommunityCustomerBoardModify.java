@@ -1,0 +1,27 @@
+package com.koreait.app.Community_Customer_Board;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.koreait.action.Action;
+import com.koreait.action.ActionForward;
+import com.koreait.app.Community_Customer_Board.dao.Community_Customer_BoardDAO;
+import com.koreait.app.Community_Customer_Board.vo.Community_Customer_BoardVO;
+
+public class CommunityCustomerBoardModify implements Action {
+	
+		@Override
+		public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			int board_num = Integer.parseInt(req.getParameter("board_num"));
+			ActionForward forward = new ActionForward();
+			
+			Community_Customer_BoardDAO dao = new Community_Customer_BoardDAO();
+
+			req.setAttribute("board", dao.getDetail(board_num));
+			forward.setRedirect(false);
+			forward.setPath("/community_Community_Modify.jsp");
+			
+			return forward;
+	}
+
+}

@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'MaruBuri-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/MaruBuri-Regular.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'SBAggroB';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
+		format('woff');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'NanumMyeongjo';
+    src: url('images/NanumMyeongjo.otf') format('truetype');
+}
+
+h3:after, h2:after {border-bottom: none;}
+
+.inner, .inner a {
+	font-family: 'MaruBuri-Regular';
+	font-size: 1em;
+	font-weight: 100;
+}
+
+#banner article {height: 109%;}
+
+#one {padding: 9em 0 0 5em; display: flex;}
+
+.tear {
+	width: 43%;
+	height: 74px;
+	border-radius: 80% 0 55% 50%/55% 0 80% 50%;
+	border: 3px solid gainsboro;
+	transform: rotate(-45deg);
+	background: red;
+	margin: 0 auto;
+}
+
+#table1 .a {background: #fff;}
+
+#table1 tr {border: #fff;}
+
+.tr1 h2 {margin: 0;}
+
+#h21, .tr1 {text-align: center; color: black;}
+
+#h21:after {border-bottom: none;}
+
+.tr1 {text-align: center;}
+
+.features>section:before {
+	content: '';
+	display: block;
+	height: 100%;
+	margin-left: -3.75em;
+	position: absolute;
+	top: 0;
+	width: 0px;
+}
+
+.wrapper.split>.inner {
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: block;
+	-moz-justify-content: space-between;
+	-webkit-justify-content: space-between;
+	-ms-justify-content: space-between;
+	justify-content: space-between;
+}
+
+.features {max-width: 100%;}
+
+.content-pad {width: 45%; display: inline-block;}
+
+.icon {width: 100%;}
+
+.content h3 {text-align: center;}
+
+.bulleted-icons {display: flex;}
+
+#banner > article h2 {margin: 0;}
+
+#header{background: #fff !important;  top:0 !important;}
+
+.style1 .inner .posts{width: 65% !important; margin: 0 auto;}
+
+video{width: 100%;}
+
+#nav{font-size: x-large;}
+
+#header.alt #nav{right: 17em;}
+
+#header.alt a{color: black; }
+
+
+@font-face {
+    font-family: 'NanumMyeongjo';
+    src: url('images/NanumMyeongjo.otf') format('truetype');
+}
+.headb{font-family: 'Noto Sans KR', sans-serif;}
+
+#header.alt .button {
+	background-color: transparent;
+	color: #b71c1c !important;
+	box-shadow: none;
+}
+
+#banner {
+	min-height: 45em;
+}
